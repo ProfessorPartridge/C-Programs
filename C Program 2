@@ -1,0 +1,60 @@
+/* 
+                       This program prompts the User to create a file. It first 
+                       asks if to type in a name for the file. Then it asks for 
+                       the User to type in 5 lines of text to save in the file.
+                       The program then displays the contents of the file back 
+                       to the User.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+
+int main()
+{
+    FILE *writeFile;          /*declares a file named 'writeFile'*/
+    FILE *readFile;           /*declares a file named 'readFile'*/
+    char fileName[13], line[81];         /*creates to character arrays. The first named 'fileName' and the second named 'line'*/
+    int i;                               /*declares 'i' as an integer*/
+    
+    printf("Welcome to problem 3 of the C Programming Final!\n\n");     
+    
+    printf("Please enter in a name for your file:\n\n");                /*prompts the User to type in a name for their new file*/
+    gets(fileName);                                                     /*saves the name that the User entered to 'fileName'*/
+    
+    writeFile = fopen(fileName, "w");                                   /*opens the new file to be written into*/
+    
+    if (writeFile == NULL){                                             /*checks to see if the file was opened successfully*/
+                 printf("Failed to open the file.");
+                 exit(1);
+                 }
+                 
+    printf("\nNow, please enter in 5 lines of text for your file:\n");  /*prompts the User to type in 5 lines of text*/
+    for (i = 0; i < 5; i++){                                            /*for loop that saves 5 lines of text and writes it into the file*/
+        gets(line);
+        fprintf(writeFile, "%s\n",line);
+        }
+      
+    fclose(writeFile);                                                  /*closes the file and stops it from being written in*/
+    
+    readFile = fopen(fileName, "r");                                    /*opens the same file to now be read*/
+    
+    if (readFile == NULL){                                              /*checks to see if the file was opened successfully*/
+                 printf("Failed to open the file.");
+                 exit(1);
+                 }
+    
+    printf("Here are the contents of your file.\n\n");                  /*Tells the User what date they are about to view*/
+    
+    while (fgets(line, 81, readFile) != NULL) {                         /*while loop that reads each line of text in the file and prints it out for the User to see*/
+          printf("%s", line);
+          }
+    
+    fclose(readFile);                                                   /*closes the file and stops it from being read*/
+    
+    printf("\n");
+    
+   
+    system("PAUSE");                                                    /*pauses the program so the User can view it*/
+                    
+    return 0;
