@@ -1,0 +1,27 @@
+/*  
+                       This program prompts the User to enter in the number of
+                       envelopes that he/she needs stamps for. It then displays
+                       the amount of money needed to purchase enough stamps.
+*/
+
+#include  <stdio.h>
+#include <iostream>
+#define STAMP_COST .37     /*This defines 'STAMP_COST' is equal to .37*/
+
+int main()
+{
+    int envelope;          /* This sets the variable 'envelope' as an integer.*/
+    float monStamp;        /* This sets the variable 'monStamp' as a float.*/
+    
+    printf("Please enter in the number of envelopes you need stamps for.");     /*This displays a message to the User and prompts them to enter in an integer value.*/
+    scanf("\n\n%d", &envelope);                                                 /*This saves the integer value that was entered in to be saved as 'envelope'.*/
+    
+    monStamp = envelope * STAMP_COST;                                           /*This gives the value of 'monStamp'.*/
+    
+    printf("\n\nYour total comes to $%5.2f\n\n", monStamp);                     /*This prints out the amount of money needed to purchase the stamps.*/
+    
+    system("PAUSE");                                                            /*This pauses the program so the User can see it.*/
+    
+    return 0;                                                                   /*End of function 'main()'.*/
+    
+}
