@@ -1,0 +1,57 @@
+/*        This program creates a linked list of structures that 
+                       each contain three data fields. Namely, 'Name', 'Artist',
+                       and 'Number_of_Songs'. I initialize these structures and 
+                       pass them to the 'display()' function so that the User
+                       can see them.
+*/
+
+#include <stdio.h>
+#include <iostream>
+
+struct Music               /*creates a structure type 'Music' that contains an array of 30 chars, and array of 14 chars and an integer*/
+{                          /*this structure also contains a pointer to the nextaddress thus making it a linked list as well.*/
+       char Name[30];
+       char Artist[14];
+       int Number_of_Songs;
+       struct Music *nextaddr;
+       };
+       
+int main()
+{
+    printf("Welcome to Problem 2 of the C Programming Final!\n");   /*Text that lets the User know what this program does*/
+    
+    printf("\nHere is a list of some of my favorite albums.\n");
+    
+    printf("\nAlbum Name:");                                        /*Text that correctly labels the table of data in the program*/
+    printf("\t\t\tArtist:");
+    printf("\t\tNumber of Songs:");
+    
+    
+    struct Music Album1 = {"Fly By Night", "Rush", 8};              /*initializes the first structure*/
+    
+    struct Music Album2 = {"All the World's a Stage", "Rush", 10};  /*initializes the second structure*/
+    
+    struct Music Album3 = {"A Farewell to Kings", "Rush", 6};       /*initializes the third structure*/
+    
+    struct Music *first;                                            /*creates a pointer to the structure type "Music"*/
+    void display(struct Music *);                                   /*function prototype for function 'display()'*/
+    
+    first  = &Album1;                                               /*stores Album1's address in first*/                      
+    Album1.nextaddr = &Album2;                                      /*stores Album2's address in Album1.nextaddr*/
+    Album2.nextaddr = &Album3;                                      /*stores Album3's address in Album2.nextaddr*/
+    Album3.nextaddr = NULL;                                         /*stores NULL in Album3.nextaddr*/
+    
+    display(first);                       /*passes the first address of the structure to the 'display()' function*/
+    
+    system("PAUSE");                      /*pauses the program so the User can see the output*/
+    
+    return 0;
+}
+
+void display(struct Music *contents)      /*function header, contents is  a pointer to a struture type 'Music'*/
+{
+     while (contents != NULL){            /*displays contents until the end of the linked list*/
+           printf("\n\n%-30s %-20s %-10d\n\n\n\n", contents->Name, contents->Artist, contents->Number_of_Songs);
+           contents = contents->nextaddr;          /*this gets the next address in the linked list for each loop*/
+           }
+}
